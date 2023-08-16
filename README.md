@@ -1,3 +1,3 @@
 # Multimodal Dataset Distillation for Image-Text Retrieval
 
-This codebase is for paper "Multimodal Dataset Distillation for Image-Text Retrieval". Code to be release soon!
+This codebase is for the paper [Multimodal Dataset Distillation for Image-Text Retrieval](https://arxiv.org/abs/2308.07545). Code will be released soon!
