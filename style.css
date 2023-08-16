@@ -1,0 +1,230 @@
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    font-size:18px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1100px;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    /*margin-left: auto;
+    margin-right: auto;*/
+    text-align: center;
+}
+
+h1 {
+    font-weight:300;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+div {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0;
+}
+
+.disclaimerbox {
+    background-color: #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+    padding: 20px;
+}
+
+video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+}
+
+img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+}
+
+img.rounded {
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+}
+
+a:link,a:visited
+{
+    color: #1367a7;
+    text-decoration: none;
+}
+a:hover {
+    color: #208799;
+}
+
+td.dl-link {
+    height: 160px;
+    text-align: center;
+    font-size: 22px;
+}
+
+
+.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+            15px 15px 0 0px #fff, /* The fourth layer */
+            15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+            20px 20px 0 0px #fff, /* The fifth layer */
+            20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+            25px 25px 0 0px #fff, /* The fifth layer */
+            25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+    margin-left: 10px;
+    margin-right: 45px;
+}
+
+
+.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+}
+
+.vert-cent {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+pre {
+    overflow-x: auto;
+    text-align: left;
+    border: 1px solid grey;
+    border-radius: 3px;
+    background: #eee;
+    padding: 5px 5px 5px 10px;
+    line-height:1.2
+}
+
+pre code {
+    text-align: left;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    font-size:12px
+}
+
+hr {
+    border: 0;
+    height: 1.5px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.vertical {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/* Below are hover effect - by Zhiqiu */
+
+.slide-container {
+  /*position: relative;*/
+  width: 250px;
+  overflow: hidden;
+}
+
+
+.slide-container img:hover, .slide-container img:active{
+  /*position: relative;*/
+  transition: ease-in-out;
+  transform: translate3d(-250px, 0px, 0px);
+}
+
+.slideup-container {
+  /*position: relative;*/
+  height: 125px;
+  overflow: hidden;
+}
+
+.slideup-container img:hover, .slideup-container img:active{
+  /*position: relative;*/
+  transition: ease-in-out;
+  transform: translate3d(0px, -125px, 0px);
+}
+
+/*.slideup-container img:hover{
+  position: relative;
+  transform: translate3d(0px, -125px, 0px);
+}*/
+
+.teaser {
+  /*position: absolute;*/
+  width: 270px;
+  height: 55px;
+}
+
+.teaser-answer {
+  opacity:0;
+  transition:1.2s;
+}
+
+.teaser .teaser-answer:hover, .teaser .teaser-answer:active  {
+    opacity:1;
+}
+
+/*.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.hover-container:hover .overlay {
+  opacity: 1;
+}*/
+
+/*.overlay:hover .overlay {
+  opacity: 0.5;
+  transition: .5s ease;
+}*/
+
+/*.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}*/
