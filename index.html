@@ -1,1 +1,263 @@
-This is a placeholder for multimodal dataset distillation website
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+
+<html>
+  <head>
+
+
+<div class="row" style="text-align:center;padding:0;padding-top:20;padding-bottom:10;margin:0">
+  <div class="container">
+    <img src="images/logo.png" height="100px" style="vertical-align:middle">
+  </div>
+</div>
+
+
+    <title>Multimodal Dataset Distillation for Image-Text Retrieval</title>
+    <meta property="og:title" content="Multimodal Dataset Distillation" />
+  </head>
+
+  <body>
+    <br>
+    <center>
+    <span style="font-size:42px">Multimodal Dataset Distillation for Image-Text Retrieval
+</span>
+    </center>
+
+    <br><br>
+      <table align=center width=800px>
+      <tr>
+        <td align=center width=100px>
+           <span style="font-size:20px"><a href="https://xindiwu.github.io/">Xindi Wu<sup>1</sup></a></span>
+         </td>
+        <td align=center width=100px>
+          <span style="font-size:20px"><a href="https://www.cs.princeton.edu/~zhiweid/">Zhiwei Deng<sup>2</sup></a></span>
+        </td>
+        <td align=center width=100px>
+          <span style="font-size:20px"><a href="https://www.cs.princeton.edu/~olgarus/">Olga Russakovsky<sup>1</sup></a></span>
+
+     </tr>
+     </table>
+
+    <table align=center width=700px>
+      <tr>
+        <td align=center width=100px>
+           <span style="font-size:20px">Princeton University<sup>1</sup></span>
+         </td>
+        <td align=center width=100px>
+          <span style="font-size:20px">Google Research<sup>2</sup></span>
+        </td>
+      </tr>
+      <table align=center width=400px>
+        <tr>
+          <td align=center width=100px>
+            <span style="font-size:20px; text-align:center;"><a href="https://arxiv.org/abs/2308.07545">[Arxiv]</a></span>
+          </td>
+          <td align=center width=100px>
+            <center>
+              <span style="font-size:20px"><a href="https://github.com/princetonvisualai/multimodal_dataset_distillation">[Code]</a></span>
+            </center>
+          </td>
+        </tr>
+      </table>
+    </table>
+
+    <hr>
+
+    
+    
+      <table align=center width=1000px>
+        <tr>
+          <center>
+            <h1>Abstract</h1>
+          </center>
+            <td><img style="width:800px" src="./images/teaser.png" /></td>
+        </tr>
+        
+      </table>
+        <!-- <br> -->
+    <p align=left style="width:1000px; padding: 0px 0px 0px 60px">
+      <strong>Dataset distillation methods</strong> offer the promise of reducing a large-scale dataset down to a significantly smaller set of (potentially synthetic) training examples, which preserve sufficient information for training a new model from scratch. So far dataset distillation methods have been developed for <strong>image classification</strong>. However, with the rise in capabilities of <strong>vision-language models</strong>, and especially given the scale of datasets necessary to train these models, the time is ripe to expand dataset distillation methods beyond image classification. In this work, we take the first steps towards this goal by expanding on the idea of <strong>trajectory matching</strong> to create a distillation method for vision-language datasets. The key challenge is that vision-language datasets do not have a set of discrete classes. To overcome this, our proposed <strong>multimodal dataset distillation method</strong> jointly distill the images and their corresponding language descriptions in a contrastive formulation. Since there are no existing baselines, we compare our approach to three <strong>coreset selection methods</strong> (strategic subsampling of the training dataset), which we adapt to the vision-language setting. We demonstrate significant improvements on the challenging <strong>Flickr30K and COCO retrieval benchmark</strong>: the best coreset selection method which selects 1000 image-text pairs for training is able to achieve only 5.6% image-to-text retrieval accuracy (recall@1); in contrast, our dataset distillation approach almost <strong>doubles</strong> that with just <strong>100</strong> (an order of magnitude fewer) training pairs.
+
+      </p>
+
+
+      <br>
+      <hr>
+      <table align=center width=800>
+       <center><h1>Trajectory-Guided Multimodal Dataset Co-Distillation</h1></center>
+       <td><img style="width:800px" src="./images/pipeline.png" /></td>
+       <p align=left style="width:1000px; padding: 0px 0px 0px 60px">
+        Dataset distillation traditionally focuses on classification tasks with distinct labels, creating compact distilled datasets for efficient learning. 
+        We've expanded this to a multimodal approach, distilling both vision and language data, emphasizing their interrelation. 
+        Unlike simple classification, our method captures complex connections between image and text data. 
+        It is worth noting that this would be impossible if we solely optimize a single modality, which is supported by our single-modality distillation results.
+        <p align=left style="width:1000px; padding: 0px 0px 0px 60px">
+          The approach consists of two stages:
+          
+        <ol>
+            <li>
+                Obtaining the expert training trajectories \( \{\tau^*\} \), with each trajectory \( \tau^* = \{\theta^*_t\}_{t=0}^T \), by training multiple models for \( T \) epochs on the full dataset \( \mathbf{D} \). For our multimodal setting, the models are trained using <strong>bidirectional contrastive loss</strong>.
+            </li>
+            <li>
+                Training a set of student models on the current distilled dataset \( \hat{\mathbf{D}} \) using the same bidirectional contrastive loss, and then updating the distilled dataset \( \hat{\mathbf{D}} \) based on the <strong>multimodal trajectory matching loss</strong> of the student models' parameters and the optimal \( \theta^* \).
+            </li>
+        </ol>
+      </p>
+
+    
+         <br>
+      </table>
+
+
+       <hr>
+       <table align="center" width="800">
+           <tr>
+               <td colspan="2">
+                   <h1 align="center">Multimodal Trajectory Matching</h1>
+               </td>
+           </tr>  
+           <tr>
+               <td style="vertical-align:top; text-align:left;">
+                   <p style="width:500px;">
+                       Following the MTT formulation, we randomly sample \( M \) image-text pairs from \( \mathbf{D} \) to initialize the distilled dataset \( \mathbf{\hat{D}} \) (more details can be found elsewhere). We sample an expert trajectory (i.e., the trajectory of a model trained on the full dataset) \( \tau^* = \{\theta^*_t\}_{t=0}^T \) and a random starting epoch \( s \) to initialize \( \hat{\theta}_s = \theta^*_s \). 
+                       <br><br>
+                       We train the student model on the distilled dataset for \( \hat{R} \) steps to obtain \( \hat{\theta}_{s+\hat{R}} \). We then update the distilled dataset based on multimodal trajectory matching loss \( \ell_{trajectory} \) computed on the accumulated difference between student trajectory and expert trajectory:
+                       <br>
+                       $$
+                       \ell_{trajectory} = \frac{\|\hat{\theta}_{img, s+\hat{R}} - \theta^*_{img, s+R}\|_2^2}{\|\theta^*_{img, s} - \theta^*_{img, s+R}\|_2^2} + \frac{\|\hat{\theta}_{txt, s+\hat{R}} - \theta^*_{txt, s+R}\|_2^2}{\|\theta^*_{txt, s} - \theta^*_{txt, s+R}\|_2^2}.
+                       $$
+                       <br>
+                       We update the distilled dataset by back-propagating through multiple (\( \hat{R} \)) gradient descent updates to the \( \hat{\mathbf{D}} \), specifically, image pixel space and text embedding space. We initialize the continuous sentence embeddings using a pretrained BERT model and update the distilled text in the continuous embedding space. For the distilled image optimization, we directly update the pixel values of the distilled images. 
+                   </p>
+               </td>
+               <td>
+                   <img style="width:400px" src="./images/loss.png" />
+               </td>
+           </tr>
+       </table>
+       
+        
+
+      <hr>
+      <table align=center width=800>
+        <center>
+          <h1>Results</h1>
+        </center>
+        <!-- <tr> -->
+        <p align=left style="width:1000px; padding: 0px 0px 0px 60px">We compare our distillation method to four coreset selection methods: random selection of training examples, herding, k-center and forgetting. We consider different selected sizes (100, 200, 500, and 1000) and report the image-to-text (TR) and text-to-image (IR) retrieval performance on the Flickr30K dataset in Table A. 
+        <center><img style="width:800px" src="./images/tables.png" /></center>
+        <p align=left style="width:1000px; padding: 0px 0px 0px 60px">We also provide ablation study on the selection of vision (Table B) and language (Table C) backbones. We introduce the <strong>Performance Recovery Ratio (PRR)</strong> to evaluate the effectiveness of dataset distillation. It quantifies the percentage of performance retained from the original data. The performance for various backbone combinations is shown in Table D.
+
+      <!-- </tr> -->
+        <!-- <center>
+        <tr>
+          <td><img style="width:565px" src="./images/sota.png" /></td>
+          <td><img style="width:400px" src="./images/augment_sota.png" /></td>
+        </tr>
+        </center> -->
+
+        <!-- <tr><p align=left style="width:1000px; padding: 0px 0px 0px 60px">In addition, we show in paper our approach also achieves the best training efficiency and test-time robustness to distribution shifts (e.g., from ImageNet to ImageNetV2).</p></tr> -->
+      
+      </table>
+      <br>
+
+      <hr>
+      <table align=center width=800>
+       <center><h1>Visualization</h1></center>
+       <p align=left style="width:1000px; padding: 0px 0px 0px 60px"><span style="color:blue;"><em>Left</em></span>: The image and text pairs before the distillation. <span style="color:pink;"><em>Right</em></span>: The image and text pairs after 2000 distillation steps. Note that the texts visualized here are nearest sentence decodings in the training set corresponding to the distilled text embeddings.
+
+       <center><img style="width:1000px" src="./images/visualization.png" /></center>
+       <p align=left style="width:1000px; padding: 0px 0px 0px 60px">Here we include a number of visualizations of the data we distilled from the multimodal dataset (both Flickr30K and COCO) for a more intuitive understanding of the distilled set. 
+        We provide 50 distilled image-text paired examples including their visualization before the distillation process. 
+        Those experiments are conducted using 100 distilled pairs, with pretrained NFNet and BERT as backbones and the synthetic step is set to 8 during distillation. 
+
+       
+       <center><img style="width:1100px" src="./images/more_vis.png" /></center>
+
+    
+      <br>
+
+      
+
+          
+      </table>
+
+      <br>
+      
+      <hr>
+      <table align=center width=800>
+        <center>
+          <h1>Conclusion</h1>
+        </center>
+        <p align=left style="width:1000px; padding: 0px 0px 0px 60px">
+          In this work, we propose a multimodal dataset distillation method for the image-text retrieval task. 
+          By co-distilling both the vision and language modalities, we can progressively optimize and distill the most critical information. 
+          Our experiments show that co-distilling different modalities via trajectory matching holds promise. 
+          We hope that the insights we gathered can be a roadmap for future studies exploring more complex settings, and that our work lays the groundwork for future research aimed at understanding what is the minimum information required for a vision-language model to achieve comparable performance quickly, thereby building a better understanding of the compositionality of compact visual-linguistic knowledge.
+
+        <br> 
+      
+      
+      
+      
+      </table>
+
+      <br>
+      <hr>
+      <table align=center width=900>
+       <center><h1>Paper</h1></center>
+          <tr>
+            <td><a href="./images/teaser.png"><img style="width:300px" src="./images/teaser.png"/></a></td>
+            <td><span style="font-size:14pt">Xindi Wu, Zhiwei Deng, Olga Russakovsky.<br>
+                <i>Multimodal Dataset Distillation for Image-Text Retrieval</i><br>
+              In submission.<br>
+                <a href="https://arxiv.org/abs/2308.07545">[Arxiv]</a> &nbsp; &nbsp;
+                <a href="https://github.com/princetonvisualai/multimodal_dataset_distillation">[Code]</a> &nbsp; &nbsp;
+            </td>
+          
+          </tr>
+            
+    
+      <td colspan=2>
+          <textarea id="bibtex-data" readonly style="width: 80%; height: 110px; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; font-family: monospace;">
+@article{wu2023multimodal,
+  title={Multimodal Dataset Distillation for Image-Text Retrieval},
+  author={Wu, Xindi and Deng, Zhiwei and Russakovsky, Olga},
+  journal={arXiv preprint arXiv:2308.07545},
+  year={2023}
+}
+          </textarea>
+      </td>
+  </tr>
+        <td colspan=2 align=center>
+            <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        </td>
+  <tr>
+  </tr>
+</table>
+<br>
+<hr>
+
+
+
+      <table align=center width=1100px>
+        <tr>
+          <td>
+            <left>
+              <center>
+                <h1>Acknowledgements</h1>
+              </center>
+              This material is based upon work supported by the National Science Foundation under Grant No. 2107048. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. We thank Allison Chen, Tiffany Ling, Jihoon Chung, Carlos E. Jimenez, Ye Zhu, William Yang and Kaiqu Liang for their helpful feedback on this work.
+            </left>
+          </td>
+        </tr>
+      </table>
+
+      <br><br>
+</body>
+</html>
