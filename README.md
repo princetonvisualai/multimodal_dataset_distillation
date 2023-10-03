@@ -2,7 +2,7 @@
 
 ### [Project Page](https://princetonvisualai.github.io/multimodal_dataset_distillation/) | [Paper](https://arxiv.org/abs/2308.07545)
 
-![Teaser image](images/teaser_new.png)
+![Teaser image](images/teaser.png)
 This codebase is for the paper [Vision-Language Dataset Distillation](https://arxiv.org/abs/2308.07545). Please visit our [Project Page](https://princetonvisualai.github.io/multimodal_dataset_distillation/) for detailed results.
 
 
