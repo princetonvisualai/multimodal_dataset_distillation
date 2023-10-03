@@ -34,6 +34,9 @@
         <td align=center width=100px>
            <span style="font-size:20px"><a href="https://xindiwu.github.io/">Xindi Wu<sup>1</sup></a></span>
          </td>
+         <td align=center width=100px>
+          <span style="font-size:20px"><a href="">Byron Zhang<sup>1</sup></a></span>
+        </td>
         <td align=center width=100px>
           <span style="font-size:20px"><a href="https://www.cs.princeton.edu/~zhiweid/">Zhiwei Deng<sup>2</sup></a></span>
         </td>
@@ -81,15 +84,12 @@
       </table>
         <!-- <br> -->
     <p align=left style="width:1000px; padding: 0px 0px 0px 60px">
-      <strong>Dataset distillation methods</strong> offer the promise of reducing a large-scale dataset down to a significantly smaller set of (potentially synthetic) training examples, which preserve sufficient information for training a new model from scratch. So far dataset distillation methods have been developed for <strong>image classification</strong>. However, with the rise in capabilities of <strong>vision-language models</strong>, and especially given the scale of datasets necessary to train these models, the time is ripe to expand dataset distillation methods beyond image classification. In this work, we take the first steps towards this goal by expanding on the idea of <strong>trajectory matching</strong> to create a distillation method for vision-language datasets. The key challenge is that vision-language datasets do not have a set of discrete classes. To overcome this, our proposed <strong>multimodal dataset distillation method</strong> jointly distill the images and their corresponding language descriptions in a contrastive formulation. Since there are no existing baselines, we compare our approach to three <strong>coreset selection methods</strong> (strategic subsampling of the training dataset), which we adapt to the vision-language setting. We demonstrate significant improvements on the challenging <strong>Flickr30K and COCO retrieval benchmark</strong>: the best coreset selection method which selects 1000 image-text pairs for training is able to achieve only 5.6% image-to-text retrieval accuracy (recall@1); in contrast, our dataset distillation approach almost <strong>doubles</strong> that with just <strong>100</strong> (an order of magnitude fewer) training pairs.
-
+      <strong>Dataset distillation methods</strong> offer the promise of reducing a large-scale dataset down to a significantly smaller set of (potentially synthetic) training examples, which preserve sufficient information for training a new model from scratch. So far dataset distillation methods have been developed for <strong>image classification</strong>. However, with the rise in capabilities of <strong>vision-language models</strong>, and especially given the scale of datasets necessary to train these models, the time is ripe to expand dataset distillation methods beyond image classification. In this work, we take the first steps towards this goal by expanding on the idea of <strong>trajectory matching</strong> to create a distillation method for vision-language datasets. The key challenge is that vision-language datasets do not have a set of discrete classes. To overcome this, our proposed <strong>vision-and-language dataset distillation</strong> method jointly distill the images and their corresponding language descriptions in a contrastive formulation. Since there are no existing baselines, we compare our approach to three <strong>coreset selection methods</strong> (strategic subsampling of the training dataset), which we adapt to the vision-language setting. We demonstrate significant improvements on the challenging Flickr30K and COCO retrieval benchmarks: for example, on <strong>Flickr30K</strong> the best coreset selection method which selects 1000 image-text pairs for training is able to achieve only 5.6% image-to-text retrieval accuracy (i.e., recall@1); in contrast, our dataset distillation approach almost <strong>doubles</strong> that to 9.9% with just <strong>100</strong> (an order of magnitude fewer) training pairs.
       </p>
-
-
       <br>
       <hr>
       <table align=center width=800>
-       <center><h1>Trajectory-Guided Multimodal Dataset Co-Distillation</h1></center>
+       <center><h1>Bi-Trajectory-Guided Co-Distillation</h1></center>
        <td><img style="width:800px" src="./images/pipeline.png" /></td>
        <p align=left style="width:1000px; padding: 0px 0px 0px 60px">
         Dataset distillation traditionally focuses on classification tasks with distinct labels, creating compact distilled datasets for efficient learning. 
@@ -118,7 +118,7 @@
        <table align="center" width="800">
            <tr>
                <td colspan="2">
-                   <h1 align="center">Multimodal Trajectory Matching</h1>
+                   <h1 align="center">Vision-Language Bi-Trajectory Matching</h1>
                </td>
            </tr>  
            <tr>
@@ -213,8 +213,8 @@
        <center><h1>Paper</h1></center>
           <tr>
             <td><a href="./images/teaser.png"><img style="width:300px" src="./images/teaser.png"/></a></td>
-            <td><span style="font-size:14pt">Xindi Wu, Zhiwei Deng, Olga Russakovsky.<br>
-                <i>Multimodal Dataset Distillation for Image-Text Retrieval</i><br>
+            <td><span style="font-size:14pt">Xindi Wu, Byron Zhang, Zhiwei Deng, Olga Russakovsky.<br>
+                <i>Vision-Language Dataset Distillation</i><br>
               In submission.<br>
                 <a href="https://arxiv.org/abs/2308.07545">[Arxiv]</a> &nbsp; &nbsp;
                 <a href="https://github.com/princetonvisualai/multimodal_dataset_distillation">[Code]</a> &nbsp; &nbsp;
@@ -227,7 +227,7 @@
           <textarea id="bibtex-data" readonly style="width: 80%; height: 110px; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; font-family: monospace;">
 @article{wu2023multimodal,
   title={Multimodal Dataset Distillation for Image-Text Retrieval},
-  author={Wu, Xindi and Deng, Zhiwei and Russakovsky, Olga},
+  author={Wu, Xindi and Zhang, Byron and Deng, Zhiwei and Russakovsky, Olga},
   journal={arXiv preprint arXiv:2308.07545},
   year={2023}
 }
@@ -252,7 +252,7 @@
               <center>
                 <h1>Acknowledgements</h1>
               </center>
-              This material is based upon work supported by the National Science Foundation under Grant No. 2107048. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. We thank Allison Chen, Tiffany Ling, Jihoon Chung, Carlos E. Jimenez, Ye Zhu, William Yang and Kaiqu Liang for their helpful feedback on this work.
+              This material is based upon work supported by the National Science Foundation under Grant No. 2107048. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation. We thank many people from Princeton Visual AI lab (Allison Chen, Jihoon Chung, Tyler Zhu, Ye Zhu, William Yang and Kaiqu Liang) and Princeton NLP group (Carlos E. Jimenez, John Yang), Tiffany Ling and  George Cazenavette for their helpful feedback on this work.
             </left>
           </td>
         </tr>

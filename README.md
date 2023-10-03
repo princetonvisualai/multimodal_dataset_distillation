@@ -17,27 +17,21 @@ In this work, we take the first steps towards this goal by expanding on the idea
 [Adapted from [mtt-distillaion](https://github.com/GeorgeCazenavette/mtt-distillation) by [George Cazenavette](https://georgecazenavette.github.io) et al.]
 First, download our repo:
 ```bash
-git clone https://github.com/GeorgeCazenavette/multimodal_dataset_distillation.git
-cd mtt-distillation
+git clone https://github.com/princetonvisualai/multimodal_dataset_distillation.git
+cd multimodal_dataset_distillation
 ```
 
 For an express instillation, we include ```.yaml``` files.
 
-If you have an RTX 30XX GPU (or newer), run
+You need a RTX 30XX GPU (or newer), and run
 
 ```bash
-conda env create -f requirements_11_3.yaml
-```
-
-If you have an RTX 20XX GPU (or older), run
-
-```bash
-conda env create -f requirements_10_2.yaml
+conda env create -f requirements.yaml
 ```
 
 You can then activate your  conda environment with
 ```bash
-conda activate distillation
+conda activate vl-distill
 ```
 
 ## Datasets and Annotations
@@ -64,12 +58,10 @@ This material is based upon work supported by the National Science Foundation un
 
 ## Citation
 ```
-@misc{wu2023multimodal,
-      title={Vision-Language Dataset Distillation}, 
-      author={Xindi Wu and Byron Zhang and Zhiwei Deng and Olga Russakovsky},
-      year={2023},
-      eprint={2308.07545},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{wu2023multimodal,
+  title={Multimodal Dataset Distillation for Image-Text Retrieval},
+  author={Wu, Xindi and Zhang, Byron and Deng, Zhiwei and Russakovsky, Olga},
+  journal={arXiv preprint arXiv:2308.07545},
+  year={2023}
 }
 ```
