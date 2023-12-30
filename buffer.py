@@ -1,17 +1,13 @@
 import os
 import argparse
 import torch
-import torch.nn as nn
-from tqdm import tqdm
 from epoch import epoch, epoch_test, itm_eval
-import copy
 import wandb
 import warnings
 import datetime
-from data import get_dataset_flickr, textprocess, textprocess_train
+from data import get_dataset_flickr, textprocess
 from networks import CLIPModel_full
-from utils import get_dataset, TensorDataset, load_or_process_file
-import numpy as np
+from utils import load_or_process_file
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -36,7 +32,6 @@ def main(args):
         os.makedirs(save_dir)
     ''' organize the datasets '''
     trainloader, testloader, train_dataset, test_dataset = get_dataset_flickr(args)
-    # data = np.load(f'{args.dataset}_{args.text_encoder}_text_embed.npz')
     data = load_or_process_file('text', textprocess, args, testloader)
     bert_test_embed = torch.from_numpy(data['bert_test_embed']).cpu()
 
