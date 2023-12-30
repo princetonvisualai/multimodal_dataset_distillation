@@ -10,7 +10,7 @@ from PIL import Image
 import os
 from torchvision import transforms as T
 from networks import CLIPModel_full
-from data.flickr30k_dataset import flickr30k_train, flickr30k, flickr30k_retrieval_eval
+from data.flickr30k_dataset import flickr30k_train, flickr30k_retrieval_eval
 from data.coco_dataset import coco_train, coco_caption_eval, coco_retrieval_eval
 import numpy as np
 from tqdm import tqdm

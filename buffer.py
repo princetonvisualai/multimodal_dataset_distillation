@@ -8,9 +8,9 @@ import copy
 import wandb
 import warnings
 import datetime
-from data import get_dataset_flickr
+from data import get_dataset_flickr, textprocess, textprocess_train
 from networks import CLIPModel_full
-from utils import get_dataset, TensorDataset
+from utils import get_dataset, TensorDataset, load_or_process_file
 import numpy as np
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -36,9 +36,9 @@ def main(args):
         os.makedirs(save_dir)
     ''' organize the datasets '''
     trainloader, testloader, train_dataset, test_dataset = get_dataset_flickr(args)
-    data = np.load(f'{args.dataset}_{args.text_encoder}_text_embed.npz')
-    bert_test_embed_loaded = data['bert_test_embed']
-    bert_test_embed = torch.from_numpy(bert_test_embed_loaded).cpu()
+    # data = np.load(f'{args.dataset}_{args.text_encoder}_text_embed.npz')
+    data = load_or_process_file('text', textprocess, args, testloader)
+    bert_test_embed = torch.from_numpy(data['bert_test_embed']).cpu()
 
 
     img_trajectories = []
@@ -162,7 +162,7 @@ if __name__ == '__main__':
                         help='Use max instead of sum in the rank loss.')
     parser.add_argument('--only_has_image_projection', type=bool, default=False, help='None')
     parser.add_argument('--grounding', type=bool, default=False, help='None')
-                        
+    parser.add_argument('--distill', type=bool, default=False, help='if distill')
     args = parser.parse_args()
 
     main(args)

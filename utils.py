@@ -868,3 +868,27 @@ def init_distributed_mode(args):
     torch.distributed.barrier()
     setup_for_distributed(args.rank == 0)        
         
+
+def load_or_process_file(file_type, process_func, args, data_source):
+    """
+    Load the processed file if it exists, otherwise process the data source and create the file.
+
+    Args:
+    file_type: The type of the file (e.g., 'train', 'test').
+    process_func: The function to process the data source.
+    args: The arguments required by the process function and to build the filename.
+    data_source: The source data to be processed.
+
+    Returns:
+    The loaded data from the file.
+    """
+    filename = f'{args.dataset}_{args.text_encoder}_{file_type}_embed.npz'
+
+
+    if not os.path.exists(filename):
+        print(f'Creating {filename}')
+        process_func(args, data_source)
+    else:
+        print(f'Loading {filename}')
+    
+    return np.load(filename)

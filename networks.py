@@ -650,7 +650,7 @@ class ImageEncoder(nn.Module):
     Encode images to a fixed size vector
     """
 
-    def __init__(self, args):
+    def __init__(self, args, eval_stage):
         super().__init__()
         self.model_name = args.image_encoder
         self.pretrained = args.image_pretrained
