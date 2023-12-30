@@ -6,13 +6,4 @@
 **/buffers
 **/data/cifar-10-batches-py 
 **/data/cifar-10-python.tar.gz
-**/flickr_text_embed.npz
-**/flickr_train_text_embed.npz
-**/flickr_bert_text_embed.npz
-**/flickr_bert_train_text_embed.npz
-**/flickr_clip_text_embed.npz
-**/flickr_clip_train_text_embed.npz
-**/coco_text_embed.npz
-**/coco_train_text_embed.npz
-**/coco_bert_text_embed.npz
-**/coco_bert_train_text_embed.npz
+*.npz
