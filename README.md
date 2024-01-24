@@ -26,7 +26,7 @@ For an express instillation, we include ```.yaml``` files.
 You need a RTX 30XX GPU (or newer), and run
 
 ```bash
-conda env create -f requirements.yml
+conda env create -f requirements.yaml
 ```
 
 You can then activate your  conda environment with
