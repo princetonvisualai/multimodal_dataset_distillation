@@ -66,5 +66,3 @@ This material is based upon work supported by the National Science Foundation un
 }
 ```
 
-## TODO
-LoRA matching part coming soon
