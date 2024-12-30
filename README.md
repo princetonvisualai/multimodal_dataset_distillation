@@ -2,6 +2,7 @@
 
 ### [Project Page](https://princetonvisualai.github.io/multimodal_dataset_distillation/) | [Paper](https://arxiv.org/abs/2308.07545)
 TMLR, 2024 
+
 [Xindi Wu](https://xindiwu.github.io/), [Byron Zhang](https://www.linkedin.com/in/byron-zhang), [Zhiwei Deng](https://lucas2012.github.io/), [Olga Russakovsky](https://www.cs.princeton.edu/~olgarus/)
 
 ![Teaser image](images/teaser.png)
